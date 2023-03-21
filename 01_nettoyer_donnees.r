@@ -17,7 +17,7 @@
 # 	- Fusionner les donnees de chaque groupe en un seul data.frame
 # 4. Sauvegarder les données fusionnées de chaque table dans le dossier data/clean
 ######################################################
-
+#modif pour importation dans github
 
 #-----------------------------------------------------
 # 2. Charger les données
@@ -50,7 +50,7 @@ for(tab in tabNames) {
     separateur <- ifelse(grepl(';', L), ';', ',') # S'il y a un ";", separateur est donc ";"
     
     # charger le donnée avec le bon séparateur et donner le nom `tabName`
-    assign(tabName, read.csv(ficher, sep = separateur, stringsAsFactors = FALSE))
+    assign(tabName, read.csv(ficher, sep = separateur, stringsAsFactors = FALSE, na.strings = c("", "NA")))
     
   }
 }
@@ -80,39 +80,58 @@ etudiant_9 <- etudiant_9[, c(1:8)]
 colnames(etudiant_4) <- c("prenom_nom", "prenom", "nom", "region_administrative",	"regime_coop", "formation_prealable", "annee_debut", "programme")
 colnames(cour_4) <- c("sigle", "optionnel", "credits")
 
-#Fusion des donn?es
-  #Fusion des collaborations
-    #Fusionner les dataframe
-      collaboration <- rbind(collaboration_1, collaboration_2, collaboration_3, collaboration_4, collaboration_5, collaboration_6, collaboration_7, collaboration_8, collaboration_9, collaboration_10)
-    #suppression des espaces
-      for (i in ncol(collaboration)){
-        collaboration[,i] <- trimws(collaboration[,i])
-      }
-      collaboration_unique <- unique(collaboration)
-      rm(list = c('collaboration_1', 'collaboration_2', 'collaboration_3', 'collaboration_4', 'collaboration_5', 'collaboration_6', 'collaboration_7', 'collaboration_8', 'collaboration_9', 'collaboration_10'))
-      collaboration_unique <- collaboration_unique[order(collaboration_unique$etudiant1),]
+#Fusionner les dataframe
+collaboration <- rbind(collaboration_1, collaboration_2, collaboration_3, collaboration_4, collaboration_5, collaboration_6, collaboration_7, collaboration_8, collaboration_9, collaboration_10)
+rm(list = c('collaboration_1', 'collaboration_2', 'collaboration_3', 'collaboration_4', 'collaboration_5', 'collaboration_6', 'collaboration_7', 'collaboration_8', 'collaboration_9', 'collaboration_10'))
+
+cour <- rbind(cour_1, cour_2, cour_3, cour_4, cour_5, cour_6, cour_7, cour_8, cour_9, cour_10)
+rm(list = c('cour_1', 'cour_2', 'cour_3', 'cour_4', 'cour_5', 'cour_6', 'cour_7', 'cour_8', 'cour_9', 'cour_10'))
+      
+etudiant <- rbind(etudiant_1, etudiant_2, etudiant_3, etudiant_4, etudiant_5, etudiant_6, etudiant_7, etudiant_8, etudiant_9, etudiant_10)
+rm(list = c('etudiant_1', 'etudiant_2', 'etudiant_3', 'etudiant_4', 'etudiant_5', 'etudiant_6', 'etudiant_7', 'etudiant_8', 'etudiant_9', 'etudiant_10'))
+      
+#suppression des espaces (trailing et leading)
+#et remplacement des traits d'union
+for (i in ncol(collaboration)){
+  collaboration[,i] <- trimws(collaboration[,i])
+  collaboration[,i] <- gsub('-', '_', collaboration[,i])
+}
+      
+for (i in ncol(cour)){
+  cour[,i] <- trimws(cour[,i])
+}
+      
+for (i in ncol(etudiant)){
+  etudiant[,i] <- trimws(etudiant[,i])
+}
+      
+#Ordre alphabetique
+collaboration <- collaboration[order(collaboration$etudiant1),]
+cour <- cour[order(cour$sigle),]
+etudiant <- etudiant[order(etudiant$prenom_nom),]
+
+#correction
+  #traits d'union
+  collaboration$etudiant1 <- gsub("-", "_", collaboration$etudiant1) 
+  collaboration$etudiant2 <- gsub("-", "_", collaboration$etudiant2)
   
-      #Fusion des cours
-      cour <- rbind(cour_1, cour_2, cour_3, cour_4, cour_5, cour_6, cour_7, cour_8, cour_9, cour_10)
-      for (i in ncol(cour)){
-        cour[,i] <- trimws(cour[,i])
-      }
-      cour_unique <- unique(cour)
-      rm(list = c('cour_1', 'cour_2', 'cour_3', 'cour_4', 'cour_5', 'cour_6', 'cour_7', 'cour_8', 'cour_9', 'cour_10'))
-      cour_unique <- cour_unique[order(cour_unique$sigle),]
-     
-       #Fusion des etudiants
-      
-      #Fusionner les dataframe
-      etudiant <- rbind(etudiant_1, etudiant_2, etudiant_3, etudiant_4, etudiant_5, etudiant_6, etudiant_7, etudiant_8, etudiant_9, etudiant_10)
-      for (i in ncol(etudiant)){
-        etudiant[,i] <- trimws(etudiant[,i])
-        
-      }
-      etudiant_unique <- unique(etudiant)
-      rm(list = c('etudiant_1', 'etudiant_2', 'etudiant_3', 'etudiant_4', 'etudiant_5', 'etudiant_6', 'etudiant_7', 'etudiant_8', 'etudiant_9', 'etudiant_10'))
-      etudiant_unique <- etudiant_unique[order(etudiant_unique$prenom_nom),]
-      
-# Format (NA)
-      
-      
+  etudiant$prenom_nom <- gsub("-", "_", etudiant$prenom_nom)
+  etudiant$prenom <- gsub("-", "_", etudiant$prenom)
+  etudiant$nom <- gsub("-", "_", etudiant$nom)
+  etudiant$region_administrative <- gsub("-", "_", etudiant$region_administrative)
+  
+  #VRAI/FAUX
+  cour$optionnel <- gsub("TRUE", "VRAI", cour$optionnel)
+  cour$optionnel <- gsub("FALSE", "FAUX", cour$optionnel)
+  
+  etudiant$regime_coop <- gsub("TRUE", "VRAI", etudiant$regime_coop)
+  etudiant$regime_coop <- gsub("FALSE", "FAUX", etudiant$regime_coop)
+  
+  #Erreur Cour
+  
+#Unique
+collaboration <- unique(collaboration)
+cour <- unique(cour)
+etudiant <- unique(etudiant)
+
+
