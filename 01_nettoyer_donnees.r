@@ -168,3 +168,9 @@ cour<-cour[-c(15),]#sup cour BIO400
 #changement dans la table collaboration####
 collaboration[2578,3]="BOT400"
 collaboration[2916,3]="BOT400"
+collaboration[991,4]="E2022"#changement de E2023 en E2022
+collaboration[2593,4]="E2022"#changement de E2023 en E2022
+collaboration[2594,4]="E2022"#changement de E2023 en E2022
+collaboration[2648,4]="E2022"#changement de E2023 en E2022
+collaboration<-collaboration[-c(2504),]#sup cas avec des NA pour les cours et annee
+collaboration<-collaboration[-c(2504),]#sup cas avec des NA pour les cours et annee
