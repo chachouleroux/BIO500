@@ -158,8 +158,13 @@ etudiant<-etudiant[-c(155),]#yuriko_archambault
 
 #correction nom####
 etudiant$prenom_nom<-gsub("eve<a0>_dandonneau","eve_dandonneau",etudiant$prenom_nom)
+collaboration$etudiant1<-gsub("eve<a0>_dandonneau","eve_dandonneau",collaboration$etudiant1)
+collaboration$etudiant2<-gsub("eve<a0>_dandonneau","eve_dandonneau",collaboration$etudiant2)
 #changement dans la table cour####
 cour<-cour[-c(36),]#sup_ECL406 de trop
 cour<-cour[-c(68),]#sup_INS154 de trop
 cour[75,3]=2#changer nombre de crédits a ZOO302
-
+cour<-cour[-c(15),]#sup cour BIO400
+#changement dans la table collaboration####
+collaboration[2578,3]="BOT400"
+collaboration[2916,3]="BOT400"
