@@ -183,3 +183,6 @@ etudiant<-etudiant[-c(147),]
 etudiant<-etudiant[-c(154),]
 etudiant<-etudiant[-c(154),]
 etudiant<-etudiant[-c(155),]
+
+#correction nom 
+etudiant$prenom_nom<-gsub("eve<a0>_dandonneau","eve_dandonneau",etudiant$prenom_nom)
