@@ -1,30 +1,5 @@
-######################################################
-# Script pour nettoyer et assembler les données
-# Victor Cameron
-# 15 mars 2023
-######################################################
 
-
-######################################################
-## Etapes (! ADAPTER)
-# 1. Corriger les noms et les irr?gularit? dans les donn?es sur excel 
-# 2. Charger tous les donnees provenants du dossier data/raw
-# 3. Pour chaque table (etudiant, cours, collaborations):
-# 	- Vérifier si les noms de colonnes sont standardisees
-# 	- Vérifier si chacune des valeurs pour chaque colonne respecte le formatage
-# 	- Réparer les colonnes que ne respectent pas le format (travail manuel ici)
-# 	- Autres vérifications dans et entre les groupes
-# 	- Fusionner les donnees de chaque groupe en un seul data.frame
-# 4. Sauvegarder les données fusionnées de chaque table dans le dossier data/clean
-######################################################
-#modif pour importation dans github
-
-#-----------------------------------------------------
-# 2. Charger les données
-#-----------------------------------------------------
-
-
-
+# Charger les données####
 # Extraire le nom des fichers de chaque groupe
 allFiles <- dir('data/raw')
 
@@ -59,11 +34,9 @@ for(tab in tabNames) {
 rm(list = c('allFiles', 'tab', 'tabFiles', 'tabName', 'ficher', 'groupe'))
 
 
-#-----------------------------------------------------
-# 3. v?rification
-#-----------------------------------------------------
 
-#Format de la base de donnees (Largeurs et noms)
+
+#Format de la base de donnees (Largeurs et noms)####
 
 collaboration_7 <- collaboration_7[, c(1:4)]
 
@@ -76,11 +49,11 @@ etudiant_7 <- etudiant_7[, c(1:8)]
 etudiant_9 <- etudiant_9[, c(1:8)]
 
 
-#nom des colonnes
+#nom des colonnes####
 colnames(etudiant_4) <- c("prenom_nom", "prenom", "nom", "region_administrative",	"regime_coop", "formation_prealable", "annee_debut", "programme")
 colnames(cour_4) <- c("sigle", "optionnel", "credits")
 
-#Fusionner les dataframe
+#Fusionner les dataframe####
 collaboration <- rbind(collaboration_1, collaboration_2, collaboration_3, collaboration_4, collaboration_5, collaboration_6, collaboration_7, collaboration_8, collaboration_9, collaboration_10)
 rm(list = c('collaboration_1', 'collaboration_2', 'collaboration_3', 'collaboration_4', 'collaboration_5', 'collaboration_6', 'collaboration_7', 'collaboration_8', 'collaboration_9', 'collaboration_10'))
 
@@ -90,7 +63,7 @@ rm(list = c('cour_1', 'cour_2', 'cour_3', 'cour_4', 'cour_5', 'cour_6', 'cour_7'
 etudiant <- rbind(etudiant_1, etudiant_2, etudiant_3, etudiant_4, etudiant_5, etudiant_6, etudiant_7, etudiant_8, etudiant_9, etudiant_10)
 rm(list = c('etudiant_1', 'etudiant_2', 'etudiant_3', 'etudiant_4', 'etudiant_5', 'etudiant_6', 'etudiant_7', 'etudiant_8', 'etudiant_9', 'etudiant_10'))
       
-#suppression des espaces (trailing et leading)
+#suppression des espaces (trailing et leading)####
 #et remplacement des traits d'union
 for (i in ncol(collaboration)){
   collaboration[,i] <- trimws(collaboration[,i])
@@ -105,12 +78,12 @@ for (i in ncol(etudiant)){
   etudiant[,i] <- trimws(etudiant[,i])
 }
       
-#Ordre alphabetique
+#Ordre alphabetique####
 collaboration <- collaboration[order(collaboration$etudiant1),]
 cour <- cour[order(cour$sigle),]
 etudiant <- etudiant[order(etudiant$prenom_nom),]
 
-#correction
+#correction####
   #traits d'union
   collaboration$etudiant1 <- gsub("-", "_", collaboration$etudiant1) 
   collaboration$etudiant2 <- gsub("-", "_", collaboration$etudiant2)
@@ -128,64 +101,64 @@ etudiant <- etudiant[order(etudiant$prenom_nom),]
   etudiant$regime_coop <- gsub("FALSE", "FAUX", etudiant$regime_coop)
   
   
-#Unique
+#Unique####
 collaboration <- unique(collaboration)
 cour <- unique(cour)
 etudiant <- unique(etudiant)
 
 ######retirer le nom mal écrit#####
-etudiant<-etudiant[-c(8),]
-etudiant<-etudiant[-c(10),]
-etudiant<-etudiant[-c(13),]
-etudiant<-etudiant[-c(19),]
-etudiant<-etudiant[-c(20),]
-etudiant<-etudiant[-c(28),]
-etudiant<-etudiant[-c(30),]
-etudiant<-etudiant[-c(30),]
-etudiant<-etudiant[-c(35),]
-etudiant<-etudiant[-c(42),]
-etudiant<-etudiant[-c(42),]
-etudiant<-etudiant[-c(43),]
-etudiant<-etudiant[-c(59),]
-etudiant<-etudiant[-c(62),]
-etudiant<-etudiant[-c(65),]
-etudiant<-etudiant[-c(68),]
-etudiant<-etudiant[-c(72),]
-etudiant<-etudiant[-c(75),]
-etudiant<-etudiant[-c(81),]
-etudiant<-etudiant[-c(82),]
-etudiant<-etudiant[-c(84),]
-etudiant<-etudiant[-c(88),]
-etudiant<-etudiant[-c(93),]
-etudiant<-etudiant[-c(94),]
-etudiant<-etudiant[-c(105),]
-etudiant<-etudiant[-c(108),]
-etudiant<-etudiant[-c(109),]
-etudiant<-etudiant[-c(110),]
-etudiant<-etudiant[-c(111),]
-etudiant<-etudiant[-c(116),]
-etudiant<-etudiant[-c(116),]
-etudiant<-etudiant[-c(120),]
-etudiant<-etudiant[-c(122),]
-etudiant<-etudiant[-c(126),]
-etudiant<-etudiant[-c(126),]
-etudiant<-etudiant[-c(127),]
-etudiant<-etudiant[-c(129),]
-etudiant<-etudiant[-c(132),]
-etudiant<-etudiant[-c(132),]
-etudiant<-etudiant[-c(132),]
-etudiant<-etudiant[-c(135),]
-etudiant<-etudiant[-c(136),]
-etudiant<-etudiant[-c(137),]
-etudiant<-etudiant[-c(142),]
-etudiant<-etudiant[-c(147),]
-etudiant<-etudiant[-c(154),]
-etudiant<-etudiant[-c(154),]
-etudiant<-etudiant[-c(155),]
+etudiant<-etudiant[-c(8),]#amelie_harbeck_bastien
+etudiant<-etudiant[-c(10),]#amelie_pelletier
+etudiant<-etudiant[-c(13),]#ariane_barrette
+etudiant<-etudiant[-c(19),]#beatrice_dupuis
+etudiant<-etudiant[-c(20),]#benjamin_auclair
+etudiant<-etudiant[-c(28),]#camille_gagnon
+etudiant<-etudiant[-c(30),]#cassandra_godin
+etudiant<-etudiant[-c(30),]#cassandra_godin
+etudiant<-etudiant[-c(35),]#charles_ferland
+etudiant<-etudiant[-c(42),]#daphnee_longworth
+etudiant<-etudiant[-c(42),]#daphnee_longworth
+etudiant<-etudiant[-c(43),]#denya_berard
+etudiant<-etudiant[-c(59),]#felix_olivier_dufour
+etudiant<-etudiant[-c(62),]#francis_boily
+etudiant<-etudiant[-c(65),]#frederic_laberge
+etudiant<-etudiant[-c(68),]#gabrielle_beauchesne
+etudiant<-etudiant[-c(72),]#guillaume_tardif
+etudiant<-etudiant[-c(75),]#hugo_morin_brassard
+etudiant<-etudiant[-c(81),]#jonathan_rondeau_leclaire
+etudiant<-etudiant[-c(82),]#juliette_larrivee
+etudiant<-etudiant[-c(84),]#justine_labelle
+etudiant<-etudiant[-c(88),]#kayla_trempe_kay
+etudiant<-etudiant[-c(93),]#laurianne_plante
+etudiant<-etudiant[-c(94),]#laurie_anne_cournoyer
+etudiant<-etudiant[-c(105),]#magalie_bosse
+etudiant<-etudiant[-c(108),]#marie_christine_arseneau
+etudiant<-etudiant[-c(109),]#marie_claude_mayotte
+etudiant<-etudiant[-c(110),]#marie_eve_gagne
+etudiant<-etudiant[-c(111),]#marilou_cournoyer
+etudiant<-etudiant[-c(116),]#mia_carriere
+etudiant<-etudiant[-c(116),]#mia_carriere
+etudiant<-etudiant[-c(120),]#naomie_aubut
+etudiant<-etudiant[-c(122),]#nicolas_beaudoin
+etudiant<-etudiant[-c(126),]#penelope_robert
+etudiant<-etudiant[-c(126),]#philippe_barrette
+etudiant<-etudiant[-c(127),]#philippe_bourassa
+etudiant<-etudiant[-c(129),]#philippe_leonard_dufour
+etudiant<-etudiant[-c(132),]#rosalie_gagnon
+etudiant<-etudiant[-c(132),]#rosalie_gagnon
+etudiant<-etudiant[-c(132),]#roxanne_bernier
+etudiant<-etudiant[-c(135),]#sabrina_leclercq
+etudiant<-etudiant[-c(136),]#samuel_beaulac
+etudiant<-etudiant[-c(137),]#samuel_fortin
+etudiant<-etudiant[-c(142),]#simon_bourgeois
+etudiant<-etudiant[-c(147),]#thomas_raymond
+etudiant<-etudiant[-c(154),]#yanick_sageau
+etudiant<-etudiant[-c(154),]#yanick_sageau
+etudiant<-etudiant[-c(155),]#yuriko_archambault
 
 #correction nom####
 etudiant$prenom_nom<-gsub("eve<a0>_dandonneau","eve_dandonneau",etudiant$prenom_nom)
-#changement dans la table cour
+#changement dans la table cour####
 cour<-cour[-c(36),]#sup_ECL406 de trop
 cour<-cour[-c(68),]#sup_INS154 de trop
 cour[75,3]=2#changer nombre de crédits a ZOO302
