@@ -23,7 +23,7 @@
 # 2. Charger les données
 #-----------------------------------------------------
 
-setwd("~/Ecole/uni/H23/methode/projet")
+
 
 # Extraire le nom des fichers de chaque groupe
 allFiles <- dir('data/raw')
@@ -134,4 +134,52 @@ collaboration <- unique(collaboration)
 cour <- unique(cour)
 etudiant <- unique(etudiant)
 
-
+#retirer le nom mal écrit
+etudiant<-etudiant[-c(8),]
+etudiant<-etudiant[-c(10),]
+etudiant<-etudiant[-c(13),]
+etudiant<-etudiant[-c(19),]
+etudiant<-etudiant[-c(20),]
+etudiant<-etudiant[-c(28),]
+etudiant<-etudiant[-c(30),]
+etudiant<-etudiant[-c(30),]
+etudiant<-etudiant[-c(35),]
+etudiant<-etudiant[-c(42),]
+etudiant<-etudiant[-c(42),]
+etudiant<-etudiant[-c(43),]
+etudiant<-etudiant[-c(59),]
+etudiant<-etudiant[-c(62),]
+etudiant<-etudiant[-c(65),]
+etudiant<-etudiant[-c(68),]
+etudiant<-etudiant[-c(72),]
+etudiant<-etudiant[-c(75),]
+etudiant<-etudiant[-c(81),]
+etudiant<-etudiant[-c(82),]
+etudiant<-etudiant[-c(84),]
+etudiant<-etudiant[-c(88),]
+etudiant<-etudiant[-c(93),]
+etudiant<-etudiant[-c(94),]
+etudiant<-etudiant[-c(105),]
+etudiant<-etudiant[-c(108),]
+etudiant<-etudiant[-c(109),]
+etudiant<-etudiant[-c(110),]
+etudiant<-etudiant[-c(111),]
+etudiant<-etudiant[-c(116),]
+etudiant<-etudiant[-c(116),]
+etudiant<-etudiant[-c(120),]
+etudiant<-etudiant[-c(122),]
+etudiant<-etudiant[-c(126),]
+etudiant<-etudiant[-c(126),]
+etudiant<-etudiant[-c(127),]
+etudiant<-etudiant[-c(129),]
+etudiant<-etudiant[-c(132),]
+etudiant<-etudiant[-c(132),]
+etudiant<-etudiant[-c(132),]
+etudiant<-etudiant[-c(135),]
+etudiant<-etudiant[-c(136),]
+etudiant<-etudiant[-c(137),]
+etudiant<-etudiant[-c(142),]
+etudiant<-etudiant[-c(147),]
+etudiant<-etudiant[-c(154),]
+etudiant<-etudiant[-c(154),]
+etudiant<-etudiant[-c(155),]
