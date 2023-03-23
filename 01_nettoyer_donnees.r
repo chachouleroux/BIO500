@@ -127,14 +127,13 @@ etudiant <- etudiant[order(etudiant$prenom_nom),]
   etudiant$regime_coop <- gsub("TRUE", "VRAI", etudiant$regime_coop)
   etudiant$regime_coop <- gsub("FALSE", "FAUX", etudiant$regime_coop)
   
-  #Erreur Cour
   
 #Unique
 collaboration <- unique(collaboration)
 cour <- unique(cour)
 etudiant <- unique(etudiant)
 
-#retirer le nom mal écrit
+######retirer le nom mal écrit#####
 etudiant<-etudiant[-c(8),]
 etudiant<-etudiant[-c(10),]
 etudiant<-etudiant[-c(13),]
@@ -184,5 +183,10 @@ etudiant<-etudiant[-c(154),]
 etudiant<-etudiant[-c(154),]
 etudiant<-etudiant[-c(155),]
 
-#correction nom 
+#correction nom####
 etudiant$prenom_nom<-gsub("eve<a0>_dandonneau","eve_dandonneau",etudiant$prenom_nom)
+#changement dans la table cour
+cour<-cour[-c(36),]#sup_ECL406 de trop
+cour<-cour[-c(68),]#sup_INS154 de trop
+cour[75,3]=2#changer nombre de crédits a ZOO302
+
