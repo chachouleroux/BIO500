@@ -223,7 +223,8 @@ dbListTables(con)
 dbWriteTable(con, append = TRUE, name = "etudiant", value = etudiant, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "collaboration", value = collaboration, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "cour", value = cour, row.names = FALSE)
-#requeteSQL####
+#semaine 3####
+#requeteSQL
 nlien_sql<-"
 SELECT etudiant1,
 count(etudiant2) AS nlien
@@ -243,3 +244,13 @@ ORDER BY nlien DESC;"
 nlien.paire<-dbGetQuery(con,nlien.paire_sql) 
 nlien.paire
 write.csv(nlien.paire,file = "nb_lien_paire.csv")
+
+#R
+netudiant<-nrow(etudiant)
+nlien<-nrow(collaboration)
+connectance<-nlien/netudiant
+
+moy.lien <- mean(nlien.paire$nlien)
+moy.lien
+var.lien<-var(nlien.paire$nlien)
+var.lien
