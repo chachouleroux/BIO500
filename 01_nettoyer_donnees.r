@@ -223,3 +223,12 @@ dbListTables(con)
 dbWriteTable(con, append = TRUE, name = "etudiant", value = etudiant, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "collaboration", value = collaboration, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "cour", value = cour, row.names = FALSE)
+#requeteSQL####
+nlien_sql<-"
+SELECT etudiant1,
+count(etudiant2) AS nlien
+FROM collaboration
+GROUP BY etudiant1
+ORDER BY nlien DESC;"
+nb_lien<-dbGetQuery(con,nlien_sql)
+nb_lien
