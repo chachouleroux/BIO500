@@ -232,6 +232,8 @@ GROUP BY etudiant1
 ORDER BY nlien DESC;"
 nb_lien<-dbGetQuery(con,nlien_sql)
 nb_lien
+write.csv(nb_lien,file = "nb_lien.csv")
+#
 nlien.paire_sql<-"
 SELECT etudiant1,etudiant2,
 count(etudiant2) AS nlien
@@ -240,4 +242,4 @@ GROUP BY etudiant1,etudiant2
 ORDER BY nlien DESC;"
 nlien.paire<-dbGetQuery(con,nlien.paire_sql) 
 nlien.paire
-
+write.csv(nlien.paire,file = "nb_lien_paire.csv")
