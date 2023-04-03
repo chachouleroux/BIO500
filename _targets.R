@@ -19,7 +19,7 @@ tar_target(collaboration,
            clean_collaboration(coll_raw)
            ),
 tar_target(cour_raw,
-           data_cours()
+           data_cour()
            ),
 tar_target(cour, 
            clean_cour(cour_raw)
