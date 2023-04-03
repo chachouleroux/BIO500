@@ -9,6 +9,9 @@ tar_option_set(packages = c("RSQLite","igraph","dplyr"))
 source("donnees.r")
 
 list(
+  tar_target(data,
+             donnees.r()#lien
+             ),
   tar_target(coll_raw,
                 datacoll()
 ),
