@@ -38,4 +38,8 @@ CREATE TABLE cours_tb (
 ); ')
   dbSendQuery(con, cours_sql)
   dbListTables(con)
+  #####
+  dbWriteTable(con, append = TRUE, name = "etudiant", value = etudiant, row.names = FALSE)
+  dbWriteTable(con, append = TRUE, name = "collaboration", value = collaboration, row.names = FALSE)
+  dbWriteTable(con, append = TRUE, name = "cour", value = cour, row.names = FALSE)
 }
