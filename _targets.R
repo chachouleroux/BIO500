@@ -2,7 +2,7 @@ setwd()
 library(targets)
 library(tarchetypes)
 library(rmarkdown)
-library(tarchet)
+
 
 tar_option_set(packages = c("RSQLite","igraph","dplyr"))
 
@@ -12,23 +12,14 @@ list(
   tar_target(data,
              donnees.r()#lien
              ),
-  tar_target(coll_raw,
-                datacoll()
-),
 tar_target(collaboration,
-           clean_collaboration(coll_raw)
-           ),
-tar_target(cour_raw,
-           data_cours()
+           clean_collaboration()
            ),
 tar_target(cour, 
-           clean_cour(cour_raw)
-           ),
-tar_target(etudiant_raw,
-           data_etudiant()
+           clean_cour()
            ),
 tar_target(etudiant,
-           clean_etudiant(etudiant_raw)
+           clean_etudiant()
            ),
 tar_target(connectionSQL,
            conSQL()
