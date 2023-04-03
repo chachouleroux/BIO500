@@ -31,3 +31,19 @@ for(tab in tabNames) {
 
 # nettoyer des objets temporaires utilisé dans la boucle
 rm(list = c('allFiles', 'tab', 'tabFiles', 'tabName', 'ficher', 'groupe'))
+
+#Format de la base de donnees (Largeurs et noms)####
+
+collaboration_7 <- collaboration_7[, c(1:4)]
+
+cour_5 <- cour_5[, c(1:3)]
+cour_7 <- cour_7[, c(1:3)]
+
+etudiant_3 <- etudiant_3[, c(1:8)]
+etudiant_4 <- etudiant_4[, c(1:8)]
+etudiant_7 <- etudiant_7[, c(1:8)]
+etudiant_9 <- etudiant_9[, c(1:8)]
+
+#nom des colonnes####
+colnames(etudiant_4) <- c("prenom_nom", "prenom", "nom", "region_administrative",	"regime_coop", "formation_prealable", "annee_debut", "programme")
+colnames(cour_4) <- c("sigle", "optionnel", "credits")
