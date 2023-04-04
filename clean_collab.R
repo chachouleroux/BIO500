@@ -1,5 +1,5 @@
 #collaboration
-datacoll <- function(){
+clean_collaboration <- function(){
   
   #format
   collaboration_7 <- collaboration_7[, c(1:4)]
