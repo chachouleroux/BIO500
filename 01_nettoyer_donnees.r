@@ -255,16 +255,17 @@ moy.lien
 var.lien<-var(nlien.paire$nlien)
 var.lien
 #matrice adjacence
-matrice_collab <- function(data) {
-  con <- dbConnect(SQLite(), dbname="~/BAC/session 4/BIO500/travail/BIO500/projet1.db")
-  matrice_sql.coll<- "
-  SELECT etudiant1, etudiant2 
-  FROM collaboration
-  ;"
-  data_matrice<- dbGetQuery(con, matrice_sql)
-  adjacence_coll <- table(data_matrice)
-}
-##figures
+r<-nrow(etudiant)
+matrice_interact <- matrix(0, nr = r, nc = r)
+noms<-etudiant[, 1]
+colnames(matrice_interact)<-noms
+rownames(matrice_interact)<-noms
+n<-nrow(nlien.paire)
+for (i in 1:n){
+  if (nlien.paire$nlien>1) {
+    matrice_interact[nlien.paire$etudiant1,nlien.paire$etudiant2]<-1 }
+}  
+#figures
 reseau <- function(adjacence_coll) {
   network <- graph_from_adjacency_matrix(adjacence_coll)
 }
