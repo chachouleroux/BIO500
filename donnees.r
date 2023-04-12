@@ -1,5 +1,5 @@
 # Charger les données####
-# Extraire le nom des fichers de chaque groupe
+# Extraire le nom des fichiers de chaque groupe
 allFiles <- dir('data/raw')
 
 # Tables à fusionner
