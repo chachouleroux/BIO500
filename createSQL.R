@@ -18,12 +18,12 @@ CREATE TABLE etudiant_tb(
   # Création table SQL pour les collaborations entre étudiants.
   dbSendQuery(con, collaborations_sql <- '                      
 CREATE TABLE collaboration_tb(                          
-    etudiant1     VARCHAR(40),          # Colonne avec caractères 
-    etudiant2     VARCHAR(40),
-    sigle   VARCHAR(10),
-    session  VARCHAR(10),
-    PRIMARY KEY (etudiant1, etudiant2, sigle, session),
-    FOREIGN KEY (etudiant1) REFERENCES etudiant(prenom_nom),
+    etudiant1     VARCHAR(40),    # Colonne avec caractères pour identifier étudiant 1 (prenom_nom).
+    etudiant2     VARCHAR(40),    # Colonne avec caractères pour identifier étudiant 2 (prenom_nom).
+    sigle   VARCHAR(10),          # Colonne avec caractères pour le sigle du cours.      
+    session  VARCHAR(10),         # Colonne avec caractères pour la session.
+    PRIMARY KEY (etudiant1, etudiant2, sigle, session),       # Colonne avec la contrainte de la clé primaire composite.
+    FOREIGN KEY (etudiant1) REFERENCES etudiant(prenom_nom),  # Référence attribut 
     FOREIGN KEY (etudiant2) REFERENCES etudiant(prenom_nom),
     FOREIGN KEY (sigle) REFERENCES cours(sigle)
 ); ')
