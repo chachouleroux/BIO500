@@ -40,6 +40,9 @@ tar_target(nd_collab,
 tar_target(reseau_collab,
            requete2()
            ),
+tar_target(post_traitement,
+           connectance()
+           ),
 tar_target(table_nbcollab,
            read.csv()#lien
            ),
