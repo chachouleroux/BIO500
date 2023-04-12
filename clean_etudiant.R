@@ -70,4 +70,8 @@ clean_etudiant <- function(){
     etudiant<-etudiant[-c(155),]#yuriko_archambault
     #correction nom####
     etudiant$prenom_nom<-gsub("eve<a0>_dandonneau","eve_dandonneau",etudiant$prenom_nom)
+    
+    #Fusionner les dataframe####
+    etudiant <- rbind(etudiant_1, etudiant_2, etudiant_3, etudiant_4, etudiant_5, etudiant_6, etudiant_7, etudiant_8, etudiant_9, etudiant_10)
+    rm(list = c('etudiant_1', 'etudiant_2', 'etudiant_3', 'etudiant_4', 'etudiant_5', 'etudiant_6', 'etudiant_7', 'etudiant_8', 'etudiant_9', 'etudiant_10'))
 }
