@@ -7,6 +7,13 @@ library(rmarkdown)
 tar_option_set(packages = c("RSQLite","igraph","dplyr"))
 
 source("donnees.r")
+source("clean_collab.r")
+source("clean_cour.r")
+source("conSQL.r")
+source("createSQL.r")
+source("requete1.r")
+source("requete2.r")
+
 
 list(
   tar_target(data,
@@ -25,7 +32,7 @@ tar_target(connectionSQL,
            conSQL()
            ),
 tar_target(SQL,
-           createSQL(etudiant,collaboration,cour,connectionSQL)
+           createSQL()
            ),
 tar_target(nd_collab,
            requete1()
