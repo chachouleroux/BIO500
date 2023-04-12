@@ -1,5 +1,4 @@
-connectance() <- function () {
-  
+connectance <- function () {
   netudiant<-nrow(etudiant)
   nlien<-nrow(collaboration)
   connectance<-nlien/netudiant

@@ -254,3 +254,37 @@ moy.lien <- mean(nlien.paire$nlien)
 moy.lien
 var.lien<-var(nlien.paire$nlien)
 var.lien
+#matrice adjacence
+matrice_collab <- function(data) {
+  con <- dbConnect(SQLite(), dbname="~/BAC/session 4/BIO500/travail/BIO500/projet1.db")
+  matrice_sql.coll<- "
+  SELECT etudiant1, etudiant2 
+  FROM collaboration
+  ;"
+  data_matrice<- dbGetQuery(con, matrice_sql)
+  adjacence_coll <- table(data_matrice)
+}
+##figures
+reseau <- function(adjacence_coll) {
+  network <- graph_from_adjacency_matrix(adjacence_coll)
+}
+figure <- function(network,adjacence_coll) {
+  pdf(file = "reseau.pdf")
+  #ajuster les marges 
+  par(mar=c(0.1,0.1,2,0.1))
+  # Calculer le degré 
+  deg=apply(adjacence_coll, 2, sum) + apply(adjacence_coll, 1, sum) 
+  # Le rang pour chaque etudiant
+  rk=rank(deg)
+  # Faire un code de couleur
+  col.vec=rainbow(nrow(adjacence_coll))
+  # Attribuer aux noeuds la couleur
+  V(network)$color = col.vec[rk]
+  # Faire un code de taille
+  col.vec.taille=seq(2, 10, length.out = nrow(adjacence_coll))
+  # Attribuer aux etudiants la couleur
+  V(network)$size = col.vec.taille[rk]
+  # Refaire la figure
+  plot(network, vertex.label=NA, edge.arrow.mode = 0,
+       vertex.frame.color = NA)
+}
