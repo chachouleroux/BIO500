@@ -37,5 +37,7 @@ clean_collaboration <- function(){
   collaboration<-collaboration[-c(2504),]#sup cas avec des NA pour les cours et annee
   collaboration<-collaboration[-c(2504),]#sup cas avec des NA pour les cours et annee
   
-  
+  #Fusionner les dataframe####
+collaboration <- rbind(collaboration_1, collaboration_2, collaboration_3, collaboration_4, collaboration_5, collaboration_6, collaboration_7, collaboration_8, collaboration_9, collaboration_10)
+rm(list = c('collaboration_1', 'collaboration_2', 'collaboration_3', 'collaboration_4', 'collaboration_5', 'collaboration_6', 'collaboration_7', 'collaboration_8', 'collaboration_9', 'collaboration_10'))
 }
