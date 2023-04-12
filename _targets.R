@@ -2,7 +2,7 @@ setwd()
 library(targets)
 library(tarchetypes)
 library(rmarkdown)
-
+library(igraph)
 
 tar_option_set(packages = c("RSQLite","igraph","dplyr"))
 

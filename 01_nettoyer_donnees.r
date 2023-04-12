@@ -254,25 +254,17 @@ moy.lien <- mean(nlien.paire$nlien)
 moy.lien
 var.lien<-var(nlien.paire$nlien)
 var.lien
-#semaine 6
+#matrice adjacence
 matrice_collab <- function(data) {
   con <- dbConnect(SQLite(), dbname="~/BAC/session 4/BIO500/travail/BIO500/projet1.db")
-  on.exit(dbDisconnect(con))
   matrice_sql.coll<- "
   SELECT etudiant1, etudiant2 
   FROM collaboration
   ;"
-  data_matrice<- dbGetQuery(con, matrice_sql.coll)
-  adj_collab <- table(data_matrice)
+  data_matrice<- dbGetQuery(con, matrice_sql)
+  adjacence_coll <- table(data_matrice)
 }
-#
-matrice_sql.coll<- "
-SELECT etudiant1, etudiant2
-FROM collaboration
-;"
-data_matice<-dbGetQuery(con,matrice_sql.coll)
-adjacence_coll<-table(data_matice)
-#
+##figures
 reseau <- function(adjacence_coll) {
   network <- graph_from_adjacency_matrix(adjacence_coll)
 }
