@@ -11,7 +11,7 @@ Le dossier comprend les données formattées enn .csv et le dossier de données 
 
 Le dossier comprend les objets et fichiers qui ont été créés par le script _targets.R.
 
-### Dossier results
+### Dossier resultats
 
 Le dossier comprend les figures qui ont pu être produites à l'aide des codes R.
 
