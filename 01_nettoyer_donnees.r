@@ -237,8 +237,8 @@ write.csv(nb_lien,file = "nb_lien.csv")
 #
 nlien.paire_sql<-"
 SELECT etudiant1,etudiant2,
-count(etudiant2) AS nlien
-FROM collaboration
+count(DISTINCT sigle) AS nlien
+FROM (SELECT DISTINCT etudiant1, etudiant2, sigle FROM collaboration) 
 GROUP BY etudiant1,etudiant2
 ORDER BY nlien DESC;"
 nlien.paire<-dbGetQuery(con,nlien.paire_sql) 
@@ -265,27 +265,3 @@ for (i in 1:n){
   if (nlien.paire$nlien>1) {
     matrice_interact[nlien.paire$etudiant1,nlien.paire$etudiant2]<-1 }
 }  
-#figures
-reseau <- function(adjacence_coll) {
-  network <- graph_from_adjacency_matrix(adjacence_coll)
-}
-figure <- function(network,adjacence_coll) {
-  pdf(file = "reseau.pdf")
-  #ajuster les marges 
-  par(mar=c(0.1,0.1,2,0.1))
-  # Calculer le degré 
-  deg=apply(adjacence_coll, 2, sum) + apply(adjacence_coll, 1, sum) 
-  # Le rang pour chaque etudiant
-  rk=rank(deg)
-  # Faire un code de couleur
-  col.vec=rainbow(nrow(adjacence_coll))
-  # Attribuer aux noeuds la couleur
-  V(network)$color = col.vec[rk]
-  # Faire un code de taille
-  col.vec.taille=seq(2, 10, length.out = nrow(adjacence_coll))
-  # Attribuer aux etudiants la couleur
-  V(network)$size = col.vec.taille[rk]
-  # Refaire la figure
-  plot(network, vertex.label=NA, edge.arrow.mode = 0,
-       vertex.frame.color = NA)
-}
