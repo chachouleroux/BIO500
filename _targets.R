@@ -1,55 +1,51 @@
 setwd()
+
+## fichier doit obligatoirement s'appeller "_targets.R"
+# Scripts R
+source("_targets/nettoyage_donnees.R")
+source("_targets/commande_SQL.R")
+
+#librarie utiliser
+library(rmarkdown)
+library(RSQLite)
 library(targets)
 library(tarchetypes)
-library(rmarkdown)
 library(igraph)
+library(ggplot2)
+library(dplyr)
 
-tar_option_set(packages = c("RSQLite","igraph","dplyr"))
+tar_option_set(packages = c("rmarkdown","targets","tarchetypes","ggplot2","RSQLite","igraph","dplyr"))
 
-source("donnees.r")
-source("clean_collab.r")
-source("clean_cour.r")
-source("clean_etudiant.r")
-source("conSQL.r")
-source("createSQL.r")
-source("requete_SQL_1.r")
-source("requete_SQL_2.r")
-source("connectance.r")
-
-
+# Pipeline
 list(
-  tar_target(data,
-             donnees.r("~/BAC/session 4/BIO500/travail/BIO500")#lien
-             ),
-tar_target(collaboration,
-           clean_collab()
-           ),
-tar_target(cour, 
-           clean_cour()
-           ),
-tar_target(etudiant,
-           clean_etudiant()
-           ),
-tar_target(connectionSQL,
-           conSQL()
-           ),
-tar_target(SQL,
-           createSQL()
-           ),
-tar_target(nd_collab,
-           requete_SQL_1()
-           ),
-tar_target(reseau_collab,
-           requete_SQL_2()
-           ),
-tar_target(post_traitement,
-           connectance()
-           ),
-tar_target(table_nbcollab,
-           read.csv("~/BAC/session 4/BIO500/travail/BIO500")#lien
-           ),
-tar_target(table_reseaucollab,
-           read.csv("~/BAC/session 4/BIO500/travail/BIO500")#lien
-             )          
+  tar_target(
+    name = donnees,
+    command = read_data("./BIO500/_targets/nettoyage_donnees.R"),
+    format = "file"
+  ), 
+  tar_target(
+    name = file_paths, #Cible
+    command = list.files(donnees, full.names = TRUE) # Liste les fichers dans le dossier
+  ),
+  tar_target(
+    name = donnees_clean, #Cible pour le modèle
+    command = nettoyage_donnees() #Exécuter
+  ),
+  tar_target(
+    name = commande,
+    command = commande_SQL()
+  ),
+  tar_target(
+    name = table_nbcollab,
+    command = read.csv('data/nlien.csv', row.names = FALSE)
+  ),
+  tar_target(
+    name = table_reseaucollab,
+    command = read.csv('data/nlien.paire.csv', row.names = FALSE)
+  ),
+  tar_target(
+    name = rapport_rmd,
+    command = render("rmd.Rmd")
+  )
 )
-  
+
