@@ -1,5 +1,5 @@
 #commande SQL####
-library(RSQLite)
+
 commande_SQL<-function(){ 
 con <- dbConnect(SQLite(), dbname ="projet1.db")
 #creation table SQL####
@@ -86,9 +86,6 @@ var.lien
 #deconnection
 dbDisconnect(con)
 #matrice adjacence####
-#librarie
-library(igraph)
-library(ggplot2)
 
 #creattion de la matrice de reseau
 r<-nrow(etudiant)
