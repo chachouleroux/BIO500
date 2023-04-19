@@ -75,8 +75,8 @@ write.csv(nlien.paire,  'data/nlien.paire.csv', row.names = FALSE)
 
 #connectance
 netudiant<-nrow(etudiant)
-nlien<-nrow(collaboration)
-connectance<-nlien/netudiant
+n.lien<-nrow(collaboration)
+connectance<-n.lien/netudiant
 #moyenne et variance 
 moy.lien <- mean(nlien.paire$nb_collab)
 moy.lien
@@ -135,11 +135,12 @@ nombre_de_liens=nlien[,1]
 plot(nombre_de_liens,centralite,pch=20, 
      xlab = "Nombre de liens", ylab= "Centralite")
 cor.test(nombre_de_liens,centralite)
-
+ggsave("figures/ncollab_centralite.png", device = "png", dpi = 300)
 # Calculer le bacon number des etudiants par rapport a magalie
 par(mar=c(5,5,5,5))
 distance=distances(g)
 bacon_number=as.matrix(distance[,2])
 bacon_number=bacon_number[bacon_number!=0]
 hist(bacon_number, xlab="Nombre de Bacon", ylab="Frequence", breaks = c(0.5,1.5,2.5,3.5,4.5), main=NULL)
+ggsave("figures/bacon_number.png", device = "png", dpi = 300)
 }
