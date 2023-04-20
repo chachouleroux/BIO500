@@ -35,7 +35,7 @@ rm(list = c('allFiles', 'tab', 'tabFiles', 'tabName', 'ficher', 'groupe'))
 
 #changer nom de colonnes
 colnames(etudiant_4) <- c("prenom_nom", "prenom", "nom", "region_administrative", "regime_coop", "formation_prealable", "annee_debut", "programme")
-colnames(cour_4)[which(colnames(cour_4)=="?..sigle")]<-"sigle"
+colnames(cour_4) <- c("sigle", "optionnel", "credits")
 
 #changer les formats des colonnes
 collaboration_7 <- collaboration_7[,-c(5:9)]
