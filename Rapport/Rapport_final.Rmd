@@ -31,17 +31,22 @@ output: pdf_document
 
 # introduction
 
-
-
 # Méthode
 
-Pour ce qui est de la méthode, nous avons commencé par cumuler des données au niveau des étudiants participants au cours BIO500 pour établir les liens que ces derniers ont eu durant leurs sessions précédentes ainsi que la session présente. Les informations récoltées par étudiant étaient nombreuses et elles ont pu être séparé en trois classes distincte soit la section étudiantes, la section collaboration et la section cours. Dans la section étudiante, l’information récolté concernait (). Cu côté de la section collaboration on retrouvait de l’information concernant (). Finalement du côté de la section cours on y trouvais de l’information sur ().  Par la suite, à l’aide du logiciel R version (), il a été possible d’effectuer le nettoyage des données pour notamment effacer les doublons et les erreurs d’orthographe. Par la suite, il a été possible d’injecter les données ainsi que d’en faire des analyses encore via le logiciel R. Finalement, nous avons créé des figures nous permettant de répondre à nos questions scientifiques et de bien expliquer les résultats obtenus. Lors du travail d’équipe, la plateforme GitHub a été utilisé pour garder des traces des manipulations effectuées par chacun. Finalement, un script target a été assemblé pour permettre de facilité la lecture du code dans le logiciel R.
+Pour ce qui est de la méthode, nous avons commencé par cumuler des données au niveau des étudiants participants au cours BIO500 pour établir les liens que ces derniers ont eu durant leurs sessions précédentes ainsi que la session présente. Les informations récoltées par étudiant étaient nombreuses et elles ont pu être séparé en trois classes distincte soit la section étudiantes, la section collaboration et la section cours. Dans la section étudiante, l'information récolté concernait (). Cu côté de la section collaboration on retrouvait de l'information concernant (). Finalement du côté de la section cours on y trouvais de l'information sur (). Par la suite, à l'aide du logiciel R version (), il a été possible d'effectuer le nettoyage des données pour notamment effacer les doublons et les erreurs d'orthographe. Par la suite, il a été possible d'injecter les données ainsi que d'en faire des analyses encore via le logiciel R. Finalement, nous avons créé des figures nous permettant de répondre à nos questions scientifiques et de bien expliquer les résultats obtenus. Lors du travail d'équipe, la plateforme GitHub a été utilisé pour garder des traces des manipulations effectuées par chacun. Finalement, un script target a été assemblé pour permettre de facilité la lecture du code dans le logiciel R.
 
 # Résultats
+
+![](images/visualisation.png)
+
+![](images/ncollab_centralite.png)
+
+![](images/ncollab_centralite-01.png)
 
 # Discussion
 
 # Conclusion
 
 \newpage
-# Bibliographie {-}
+
+# Bibliographie {.unnumbered}
