@@ -115,10 +115,11 @@ col.vec <- seq(1, 5, length.out = r)
 V(g)$size = col.vec[rk]
 
 #afficher le graphique de reseau####
-plot(g,vertex.label = NA, edge.arrow.mode = 0,
+visualisation <-plot(g,vertex.label = NA, edge.arrow.mode = 0,
      vertex.frame.color = NA,
      layout = layout.kamada.kawai(g))
-ggsave("figures/visualisation.png", device = "png", dpi=300)
+savePlotAsImage("figures/visualisation.png",format ="png", width = 1000, height = 1000)
+
 #enregistrer la figure obtenue####
 
 #propriete du reseau####
@@ -132,15 +133,15 @@ centralite <- eigen_centrality(g)$vector
 par(mar=c(5,5,5,5))
 centralite=eigen_centrality(g)$vector 
 nombre_de_liens=nlien[,1]
-plot(nombre_de_liens,centralite,pch=20, 
-     xlab = "Nombre de liens", ylab= "Centralite")
+ncollab_centralite <-plot(nombre_de_liens,centralite,pch=20, xlab = "Nombre de liens", ylab= "Centralite")
 cor.test(nombre_de_liens,centralite)
-ggsave("figures/ncollab_centralite.png", device = "png", dpi = 300)
+savePlotAsImage("figures/ncollab_centralite.png",format ="png", width = 1000, height = 1000)
+
 # Calculer le bacon number des etudiants par rapport a magalie
 par(mar=c(5,5,5,5))
 distance=distances(g)
 bacon_number=as.matrix(distance[,2])
 bacon_number=bacon_number[bacon_number!=0]
-hist(bacon_number, xlab="Nombre de Bacon", ylab="Frequence", breaks = c(0.5,1.5,2.5,3.5,4.5), main=NULL)
-ggsave("figures/bacon_number.png", device = "png", dpi = 300)
+b_number <- hist(bacon_number, xlab="Nombre de Bacon", ylab="Frequence", breaks = c(0.5,1.5,2.5,3.5,4.5), main=NULL)
+savePlotAsImage("figures/b_number.png",format ="png", width = 1000, height = 1000)
 }

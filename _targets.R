@@ -13,6 +13,7 @@ library(tarchetypes)
 library(igraph)
 library(ggplot2)
 library(dplyr)
+library(rstudioapi)
 
 tar_option_set(packages = c("rmarkdown","targets","tarchetypes","ggplot2","RSQLite","igraph","dplyr"))
 
