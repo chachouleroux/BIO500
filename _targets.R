@@ -2,8 +2,8 @@ setwd()
 
 ## fichier doit obligatoirement s'appeller "_targets.R"
 # Scripts R
-source("_targets/nettoyage_donnees.R")
-source("_targets/commande_SQL.R")
+source("R/nettoyage_donnees.R")
+source("R/commande_SQL.R")
 
 #librarie utiliser
 library(rmarkdown)
@@ -45,7 +45,7 @@ list(
   ),
   tar_target(
     name = rapport_rmd,
-    command = render("rmd.Rmd")
+    command = render("Rapport/Rapport_final.Rmd")
   )
 )
 
