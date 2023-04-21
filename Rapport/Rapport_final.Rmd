@@ -37,11 +37,11 @@ Pour ce qui est de la méthode, nous avons commencé par cumuler des données au
 
 # Résultats
 
-![](images/visualisation.png)
+![Figure 1. Réseau d'interaction entre les différents étudiants d'écologie à l'Université de Sherbrooke,2023.](images/visualisation.png)
 
-![](images/ncollab_centralite.png)
+![Figure 2. Relation entre la centralité et le nombre de liens des étudiants d'écologie à l'Université de Sherbrooke, 2023](images/ncollab_centralite.png)
 
-![](images/ncollab_centralite-01.png)
+![Figure 3. Degrés de séparation "Bacon number" avec Magalie Bossé pour les étudiants d'écologie à l'Université de Sherbrooke, 2023](images/ncollab_centralite-01.png)
 
 # Discussion
 
