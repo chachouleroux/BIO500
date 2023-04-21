@@ -5,6 +5,10 @@ con <- dbConnect(SQLite(), dbname ="projet1.db")
 
 #table etudiant
 
+dbSendQuery(con, "DROP TABLE etudiant_tb;")
+dbSendQuery(con, "DROP TABLE collaboration_tb;")
+dbSendQuery(con, "DROP TABLE cour_tb;")
+
 etudiant_sql <- "
 CREATE TABLE etudiant_tb(
     prenom_nom VARCHAR (40),
@@ -87,9 +91,6 @@ moy.lien
 var.lien<-var(nlien.paire$nb_collab)
 var.lien
 
-dbSendQuery(con, "DROP TABLE etudiant_tb;")
-dbSendQuery(con, "DROP TABLE collaboration_tb;")
-dbSendQuery(con, "DROP TABLE cour_tb;")
 #deconnection
 dbDisconnect(con)
 }

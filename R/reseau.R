@@ -15,8 +15,8 @@ graph_reseau <- function(deg, etudiant, g) {
   visualisation <-plot(g,vertex.label = NA, edge.arrow.mode = 0,
                        vertex.frame.color = NA,
                        layout = layout.kamada.kawai(g))
-  savePlotAsImage("figures/visualisation.png",format ="png", width = 1000, height = 1000)#enregistrer la figure obtenue####
-}
+  return(visualisation)
+  }
 
 
 

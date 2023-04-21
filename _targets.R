@@ -14,6 +14,8 @@ source("R/matrice_int.R")
 source("R/g.R")
 source("R/deg.R")
 source("R/reseau.R")
+source("R/centralite.R")
+source("R/bacon.R")
 
 # Pipeline
 list(
@@ -60,6 +62,14 @@ list(
   tar_target(
     name= reseau,
     command = graph_reseau(deg, etudiant, g)
+  ),
+  tar_target(
+    name= centralite,
+    command = graph_centralite(g, nlien)
+  ),
+  tar_target(
+    name= bacon,
+    command = graph_bacon(g)
   )
 )
 
