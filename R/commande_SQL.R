@@ -1,6 +1,6 @@
 #commande SQL####
 
-commande_SQL<-function(data){ 
+commande_SQL<-function(){ 
 con <- dbConnect(SQLite(), dbname ="projet1.db")
 #creation table SQL####
 #table etudiant
