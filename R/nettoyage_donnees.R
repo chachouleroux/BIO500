@@ -1,5 +1,5 @@
 # Charger les données####
-nettoyage_donnees<-function(file_paths){
+nettoyage_donnees<-function(){
 # Extraire le nom des fichers de chaque groupe
 allFiles <- dir('data/raw')
 
@@ -314,9 +314,5 @@ collaboration <- subset(collaboration, etudiant1 != etudiant2)
 write.csv(collaboration, 'data/collaboration_clean.csv',row.names = FALSE)
 write.csv(etudiant, 'data/etudiant_clean.csv',row.names = FALSE) 
 write.csv(cour, 'data/cour_clean.csv',row.names = FALSE)
-
-#
-table <- list(etudiant, cour, collaboration) 
-return(table)
 }
 
