@@ -1,9 +1,11 @@
 #commande SQL####
 
-commande_SQL<-function(collaboration,etudiant,cour){ 
+commande_SQL<-function(collaboration, etudiant, cour){ 
 con <- dbConnect(SQLite(), dbname ="projet1.db")
 #creation table SQL####
 #table etudiant
+on.exit(dbDisconnect(con))
+dbSendQuery(con, "DROP TABLE etudiant_tb;")
 etudiant_sql <- "
 CREATE TABLE etudiant_tb(
     prenom_nom VARCHAR (40),
@@ -17,8 +19,11 @@ CREATE TABLE etudiant_tb(
     PRIMARY KEY (prenom_nom)
 );"
 dbSendQuery(con, etudiant_sql)
+dbReadTable(con, "etudiant_tb")
 
 #table collaboration
+on.exit(dbDisconnect(con))
+dbSendQuery(con, "DROP TABLE collaborations_tb;")
 collaborations_sql <- "
 CREATE TABLE collaboration_tb(
     etudiant1     VARCHAR(40),
@@ -33,6 +38,8 @@ CREATE TABLE collaboration_tb(
 dbSendQuery(con, collaborations_sql)
 
 #table cour
+on.exit(dbDisconnect(con))
+dbSendQuery(con, "DROP TABLE cour_tb;")
 cour_sql <- "
 CREATE TABLE cour_tb (
   sigle   VARCHAR(20),
