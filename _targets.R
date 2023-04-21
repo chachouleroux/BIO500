@@ -12,7 +12,8 @@ source("R/nettoyage_donnees.R")
 source("R/commande_SQL.R")
 source("R/matrice_int.R")
 source("R/g.R")
-
+source("R/deg.R")
+source("R/reseau.R")
 
 # Pipeline
 list(
@@ -46,11 +47,19 @@ list(
   ),
   tar_target(
     name= matrice,
-    command = matrice_int(nlien.paire,etudiant)
+    command = matrice_int(etudiant, nlien.paire)
   ),
   tar_target(
     name= g,
     command = fonction_g(matrice)
+  ),
+  tar_target(
+    name= deg,
+    command = fonction_deg(matrice)
+  ),
+  tar_target(
+    name= reseau,
+    command = graph_reseau(deg, etudiant, g)
   )
 )
 
