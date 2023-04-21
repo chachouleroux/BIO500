@@ -1,4 +1,9 @@
 # BIO500
+
+## Lien répertoire
+
+https://github.com/chachouleroux/BIO500.git
+
 ## Dossier principal
 
 Les dossiers ci-dessous comprennent le fichier _targets.R, la base de données et le fichier gitignore.
