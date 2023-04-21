@@ -316,7 +316,7 @@ write.csv(etudiant, 'data/etudiant_clean.csv',row.names = FALSE)
 write.csv(cour, 'data/cour_clean.csv',row.names = FALSE)
 
 #
-table <- list(etudiant, cours, collaboration) 
+table <- list(etudiant, cour, collaboration) 
 return(table)
 }
 
