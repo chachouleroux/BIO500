@@ -7,10 +7,6 @@ Les dossiers ci-dessous comprennent le fichier _targets.R, la base de données e
 
 Le dossier comprend les données formattées en .csv et le dossier de données brutes non-formattées.
 
-### Dossier _targets
-
-Le dossier comprend les objets et fichiers qui ont été créés par le script _targets.R.
-
 ### Dossier figures
 
 Le dossier comprend les figures qui ont pu être produites à l'aide des codes R.
