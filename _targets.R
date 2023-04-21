@@ -70,6 +70,10 @@ list(
   tar_target(
     name= bacon,
     command = graph_bacon(g)
+  ),
+  tar_render(
+    name = Rapport,
+    path = "Rapport/Rapport.F/Rapport_F.Rmd"
   )
 )
 

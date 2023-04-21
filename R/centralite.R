@@ -1,4 +1,5 @@
 graph_centralite <- function(g, nlien) {
+  pdf(file = "figures/centralite.pdf")
   #propriete du reseau####
   # Évalue la présence communautés dans le graphe
   wtc = walktrap.community(g)

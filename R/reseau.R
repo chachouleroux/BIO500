@@ -1,4 +1,5 @@
 graph_reseau <- function(deg, etudiant, g) {
+  pdf(file = "figures/reseau.pdf")
   r<-nrow(etudiant)
   # Le rang 
   rk <- rank(deg)
@@ -15,7 +16,6 @@ graph_reseau <- function(deg, etudiant, g) {
   visualisation <-plot(g,vertex.label = NA, edge.arrow.mode = 0,
                        vertex.frame.color = NA,
                        layout = layout.kamada.kawai(g))
-  return(visualisation)
   }
 
 
