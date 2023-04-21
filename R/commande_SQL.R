@@ -2,10 +2,9 @@
 
 commande_SQL<-function(collaboration, etudiant, cour){ 
 con <- dbConnect(SQLite(), dbname ="projet1.db")
-#creation table SQL####
+
 #table etudiant
-on.exit(dbDisconnect(con))
-dbSendQuery(con, "DROP TABLE etudiant_tb;")
+
 etudiant_sql <- "
 CREATE TABLE etudiant_tb(
     prenom_nom VARCHAR (40),
@@ -19,11 +18,10 @@ CREATE TABLE etudiant_tb(
     PRIMARY KEY (prenom_nom)
 );"
 dbSendQuery(con, etudiant_sql)
-dbReadTable(con, "etudiant_tb")
+dbWriteTable(con, append = TRUE, name = "etudiant", value = etudiant, row.names = FALSE)
+
 
 #table collaboration
-on.exit(dbDisconnect(con))
-dbSendQuery(con, "DROP TABLE collaborations_tb;")
 collaborations_sql <- "
 CREATE TABLE collaboration_tb(
     etudiant1     VARCHAR(40),
@@ -37,9 +35,8 @@ CREATE TABLE collaboration_tb(
 ); "
 dbSendQuery(con, collaborations_sql)
 
+
 #table cour
-on.exit(dbDisconnect(con))
-dbSendQuery(con, "DROP TABLE cour_tb;")
 cour_sql <- "
 CREATE TABLE cour_tb (
   sigle   VARCHAR(20),
@@ -49,11 +46,11 @@ CREATE TABLE cour_tb (
 ); "
 dbSendQuery(con, cour_sql)
 
-
 #####
 dbWriteTable(con, append = TRUE, name = "etudiant", value = etudiant, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "collaboration", value = collaboration, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "cour", value = cour, row.names = FALSE)
+
 
 #requeteSQL####
 #nombre de lien par etudiant
@@ -90,6 +87,9 @@ moy.lien
 var.lien<-var(nlien.paire$nb_collab)
 var.lien
 
+dbSendQuery(con, "DROP TABLE etudiant_tb;")
+dbSendQuery(con, "DROP TABLE collaboration_tb;")
+dbSendQuery(con, "DROP TABLE cour_tb;")
 #deconnection
 dbDisconnect(con)
 }
