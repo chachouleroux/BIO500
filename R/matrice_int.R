@@ -1,7 +1,9 @@
-#matrice adjacence####
-#creattion de la matrice de reseau
+#Fonction matrice adjacence
+
 matrice_int<- function(etudiant,nlien.paire){ 
 r<-nrow(etudiant)
+
+#creation de la matrice de reseau
 matrice_interact <- matrix(0, nr = r, nc = r)
 noms<-etudiant[, 1]
 colnames(matrice_interact)<-noms#nom de la colonne

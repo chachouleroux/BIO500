@@ -1,5 +1,6 @@
+#fonction permettant de créer le graphique de réseau
 graph_reseau <- function(deg, etudiant, g) {
-  pdf(file = "figures/reseau.pdf")
+  pdf(file = "figures/reseau.pdf") #enregistrer la figure en pdf
   r<-nrow(etudiant)
   # Le rang 
   rk <- rank(deg)
@@ -12,7 +13,7 @@ graph_reseau <- function(deg, etudiant, g) {
   # Attribuer aux liens la taille
   V(g)$size = col.vec[rk]
   
-  #afficher le graphique de reseau####
+  #le graphique de reseau#
   visualisation <-plot(g,vertex.label = NA, edge.arrow.mode = 0,
                        vertex.frame.color = NA,
                        layout = layout.kamada.kawai(g))
