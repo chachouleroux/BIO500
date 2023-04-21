@@ -311,8 +311,8 @@ rm(donnees_abs, etudiant_abs, unique_et1_c, unique_etudiant, L, nbGroupe, separa
 collaboration <- subset(collaboration, etudiant1 != etudiant2)
 
 #enregistrer les donnees nettoyer en CSV
-write.csv(collaboration, 'data/collaboration_clean.csv',row.names = FALSE)
-write.csv(etudiant, 'data/etudiant_clean.csv',row.names = FALSE) 
-write.csv(cour, 'data/cour_clean.csv',row.names = FALSE)
+write.csv(collaboration, 'data/collaboration_clean.csv')
+write.csv(etudiant, 'data/etudiant_clean.csv') 
+write.csv(cour, 'data/cour_clean.csv')
 }
 
